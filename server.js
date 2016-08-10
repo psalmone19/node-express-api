@@ -19,6 +19,7 @@ var todos = [
   }
 ]
 
+var todoNextId = 1;
 
 // This middleWear is now for the whole app!
 app.use(middleWear.requireAuthentication)
@@ -46,6 +47,15 @@ app.get('/todos/:id', function(req, res){
     } else {
       res.status(404).send()
     }
+})
+
+app.post('/todos', function (req, res){
+  var body = req.body
+    body.id = todoNextId
+    todoNextId++
+    todos.push(body)
+  // console.log('description ' + body.description)
+  res.json(body)
 })
 
 app.get('/about', middleWear.logger, function(req, res){
