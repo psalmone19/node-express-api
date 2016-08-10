@@ -3,20 +3,11 @@ var app = express()// creating an express app
 var path = require('path')
 var bodyParser = require('body-parser')
 var PORT = process.env.PORT || 3000;
-var middleWear = require('./middleWear')
+var middleWear = require('./middlewear')
 var _ = require('underscore')
 
 var todos = [
-  // {
-  //   id: 1,
-  //   description: 'Teach REST API.',
-  //   completed: false
-  // },
-  // {
-  //   id: 2,
-  //   description: 'Go eat a healthy lunch.',
-  //   completed: true
-  // }
+
 ]
 
 var todoNextId = 1;
