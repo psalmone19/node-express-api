@@ -7,16 +7,16 @@ var middleWear = require('./middleWear')
 var _ = require('underscore')
 
 var todos = [
-  {
-    id: 1,
-    description: 'Teach REST API.',
-    completed: false
-  },
-  {
-    id: 2,
-    description: 'Go eat a healthy lunch.',
-    completed: true
-  }
+  // {
+  //   id: 1,
+  //   description: 'Teach REST API.',
+  //   completed: false
+  // },
+  // {
+  //   id: 2,
+  //   description: 'Go eat a healthy lunch.',
+  //   completed: true
+  // }
 ]
 
 var todoNextId = 1;
@@ -57,6 +57,17 @@ app.post('/todos', function (req, res){
     todos.push(body)
   // console.log('description ' + body.description)
   res.json(body)
+})
+
+app.delete('/todos/:id', function(req, res){
+  var todoId = parseInt(req.params.id)
+  var matchedTodo = _.findWhere(todos, {id: todoId})
+  if(!matchedTodo) {
+    res.status(404).json({"error": "No Todo found."})
+  } else {
+    todos = _.without(todos, matchedTodo)
+  }
+  res.json(matchedTodo)
 })
 
 app.get('/about', middleWear.logger, function(req, res){

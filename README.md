@@ -103,7 +103,24 @@ app.get('/todos/:id', function(req, res){
    // console.log('description ' + body.description)
    res.json(body)
  })
- ```   
+ ```
+
+//Create DELETE /TODOS/:id
+//This is the delete verb. If it does not find the ID you're trying to delete, it will return a 404 error. But if it does find a id, it will delete it, and will return that object you have deleted.
+
+```javascript
+app.delete('/todos/:id', function(req, res){
+  var todoId = parseInt(req.params.id)
+  var matchedTodo = _.findWhere(todos, {id: todoId})
+  if(!matchedTodo) {
+    res.status(404).json({"error": "No Todo found."})
+  } else {
+    todos = _.without(todos, matchedTodo)
+  }
+  res.json(matchedTodo)
+})
+```
+
 
 
 
