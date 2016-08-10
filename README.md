@@ -17,6 +17,7 @@ var middleWear = {
 ************************************************
 
 // We utilized requireAuthentication
+
 // This will be used at every request, bc it's global
 ```
 app.use(middleWear.requireAuthentication)
@@ -34,4 +35,5 @@ app.get('/about', middleWear.logger, function(req, res){
 // Why do we move code and export it and require it?
 
 // Touched a new file called middlewear.js and moved the custom middlewear there
+
 // Which I then exported and required in the server.js
