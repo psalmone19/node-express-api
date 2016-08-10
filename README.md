@@ -67,6 +67,23 @@ First, had to initialize id. The todoNextId is an initializer
 And then required body with `req.body` which I stored in a variable 'body'.
 And then I called the body.id and set it equal to 'todoNextId', which I iterated with `todoNextId++`. And then pushed that new object to the current 'todos' array with `todos.push(body)`.
 
+// REFACTOR using UnderScore.JS
+    //GET TODOS/:id
+
+```javascript
+app.get('/todos/:id', function(req, res){
+// creating a variable that will hold id from params object
+  var todoId = parseInt(req.params.id)
+  // findWhere finds the first value that matches the key-value pair
+  var matchedTodo = _.findWhere(todos, {id: todoId})
+    if(matchedTodo) {
+      res.json(matchedTodo)
+    } else {
+      res.status(404).send()
+    }
+})
+```
+
 
 
 

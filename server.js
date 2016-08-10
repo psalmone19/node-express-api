@@ -4,6 +4,7 @@ var path = require('path')
 var bodyParser = require('body-parser')
 var PORT = process.env.PORT || 3000;
 var middleWear = require('./middleWear')
+var _ = require('underscore')
 
 var todos = [
   {
@@ -35,12 +36,8 @@ app.get('/todos', function(req, res){
 app.get('/todos/:id', function(req, res){
 // creating a variable that will hold id from params object
   var todoId = parseInt(req.params.id)
-  var matchedTodo;
-  todos.forEach(function(todo){
-    if(todoId === todo.id) {
-      matchedTodo = todo
-    }
-  })
+  // findWhere finds the first value that matches the key-value pair
+  var matchedTodo = _.findWhere(todos, {id: todoId})
     if(matchedTodo) {
       res.json(matchedTodo)
     } else {
