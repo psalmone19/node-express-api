@@ -1,5 +1,4 @@
 var express = require('express')
-
 var app = express()// creating an express app
 var path = require('path')
 var bodyParser = require('body-parser')
